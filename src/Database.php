@@ -15,7 +15,7 @@ final class Database
             mkdir($dir, 0755, true);
         }
 
-        $pdo = new PDO('sqlite:' . $path, null, null, [
+        $pdo = new PDO("sqlite:$path", null, null, [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
