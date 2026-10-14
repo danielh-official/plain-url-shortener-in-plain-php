@@ -24,7 +24,7 @@
     <?php endif; ?>
 
     <?php if ($created): ?>
-        <p class="ok">Your short link: <a href="<?= e($baseUrl . '/' . $created['code']) ?>"><?= e($baseUrl . '/' . $created['code']) ?></a></p>
+        <p class="ok">Your short link: <a target="_blank" href="<?= e($baseUrl . '/' . $created['code']) ?>"><?= e($baseUrl . '/' . $created['code']) ?></a></p>
     <?php endif; ?>
 
     <form method="post" action="/shorten">
@@ -40,7 +40,7 @@
             <tbody>
             <?php foreach ($recent as $link): ?>
                 <tr>
-                    <td><a href="/<?= e($link['code']) ?>"><?= e($link['code']) ?></a></td>
+                    <td><a target="_blank" href="/<?= e($link['code']) ?>"><?= e($link['code']) ?></a></td>
                     <td class="url"><?= e($link['url']) ?></td>
                     <td><?= (int) $link['clicks'] ?></td>
                 </tr>
