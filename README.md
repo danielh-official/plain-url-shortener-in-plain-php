@@ -10,6 +10,8 @@ php -S localhost:8000 -t public
 
 Open http://localhost:8000. The SQLite file is created in `data/` on the first request.
 
+If 8000 is taken, use a different port (e.g., `php - S localhost:8001 -t public) or kill the process using it.
+
 ## Layout
 
 ```
