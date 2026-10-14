@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+namespace Src;
+
+use PDO;
+use PDOException;
+
 final class LinkRepository
 {
     public function __construct(private PDO $db)

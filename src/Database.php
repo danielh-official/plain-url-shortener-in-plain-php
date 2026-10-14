@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+namespace Src;
+
+use PDO;
+
 final class Database
 {
     public static function connect(string $path): PDO

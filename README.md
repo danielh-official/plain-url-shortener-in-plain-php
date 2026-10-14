@@ -1,6 +1,6 @@
 # Shortener
 
-A tiny URL shortener in plain PHP 8.1+ with SQLite. No framework, no Composer.
+A tiny URL shortener in plain PHP 8.1+ with SQLite. No framework.
 
 ## Run
 

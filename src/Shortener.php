@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+namespace Src;
+
+use RuntimeException;
+use PDOException;
+
 final class Shortener
 {
     private const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../src/Database.php';
-require __DIR__ . '/../src/LinkRepository.php';
-require __DIR__ . '/../src/Shortener.php';
+require __DIR__ . '/../vendor/autoload.php';
+
+use Src\Database;
+use Src\LinkRepository;
+use Src\Shortener;
 
 $config = require __DIR__ . '/../config.php';
 
