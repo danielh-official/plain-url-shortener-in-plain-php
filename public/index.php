@@ -42,7 +42,7 @@ function csrfToken(): string
 
 function redirect(string $to, int $status = 302): never
 {
-    header('Location: ' . $to, true, $status);
+    header("Location: $to", true, $status);
     exit;
 }
 
