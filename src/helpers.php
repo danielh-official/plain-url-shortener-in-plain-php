@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Src\HttpFinish;
+
 function e(string $value): string
 {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
@@ -28,6 +30,5 @@ function csrfToken(): string
 
 function redirect(string $to, int $status = 302): never
 {
-    header("Location: $to", true, $status);
-    exit;
+    throw new HttpFinish($status, '', ['Location' => $to]);
 }

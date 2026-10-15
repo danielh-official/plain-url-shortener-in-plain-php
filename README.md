@@ -13,20 +13,32 @@ Open http://localhost:8000. The SQLite file is created in `data/` on the first r
 
 If 8000 is taken, use a different port (e.g. `php -S localhost:8001 -t public`) or kill the process using it.
 
+## Test
+
+```bash
+composer test
+```
+
+PHPUnit uses an in-memory SQLite database. Redirects and hard stops throw `Src\HttpFinish` (caught in `public/index.php`) so route tests don’t need `exit`.
+
 ## Layout
 
 ```
 public/index.php         front controller (boot + dispatch)
 public/.htaccess         Apache rewrite to index.php
+public/app.css           page styles
 src/Route.php            request matching and handlers
+src/HttpFinish.php       ends a request (status / body / headers)
 src/Database.php         PDO connection, applies schema.sql
 src/LinkRepository.php   all SQL lives here
 src/Shortener.php        URL validation and code generation
 src/helpers.php          e(), render(), csrf, redirect helpers
+tests/                   PHPUnit suite
 views/home.php           the single page
 schema.sql               links table
 config.php               db path, code length
 composer.json            PSR-4 (Src\ → src/) + helpers file autoload
+phpunit.xml              PHPUnit config
 ```
 
 ## Routes
@@ -45,4 +57,3 @@ composer.json            PSR-4 (Src\ → src/) + helpers file autoload
 2. A `clicks` table (timestamp, referrer, user agent) instead of a counter.
 3. Link expiry and a cleanup script.
 4. Rate limiting per IP on `POST /shorten`.
-5. Tests with PHPUnit against an in-memory SQLite database.

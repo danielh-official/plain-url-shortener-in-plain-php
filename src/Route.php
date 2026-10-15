@@ -14,13 +14,17 @@ final class Route
     private LinkRepository $links;
     private Shortener $shortener;
 
-    public function __construct()
+    public function __construct(?LinkRepository $links = null, ?Shortener $shortener = null)
     {
-        $config = require __DIR__ . '/../config.php';
+        if ($links === null || $shortener === null) {
+            $config = require __DIR__ . '/../config.php';
+            $db = Database::connect($config['db_path']);
+            $links = new LinkRepository($db);
+            $shortener = new Shortener($links, $config['code_length']);
+        }
 
-        $db = Database::connect($config['db_path']);
-        $this->links = new LinkRepository($db);
-        $this->shortener = new Shortener($this->links, $config['code_length']);
+        $this->links = $links;
+        $this->shortener = $shortener;
 
         $method = $_SERVER['REQUEST_METHOD'];
         $path = rtrim((string) parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') ?: '/';
@@ -117,15 +121,13 @@ final class Route
     {
         $token = $_POST['csrf'] ?? '';
         if (!is_string($token) || !hash_equals(csrfToken(), $token)) {
-            http_response_code(400);
-            exit('Invalid CSRF token.');
+            throw new HttpFinish(400, 'Invalid CSRF token.');
         }
     }
 
     private function notFound(): never
     {
-        http_response_code(404);
-        exit('Not found.');
+        throw new HttpFinish(404, 'Not found.');
     }
 
     private function delete(string $code): void

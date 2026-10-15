@@ -10,9 +10,11 @@ final class Database
 {
     public static function connect(string $path): PDO
     {
-        $dir = dirname($path);
-        if (!is_dir($dir)) {
-            mkdir($dir, 0755, true);
+        if ($path !== ':memory:') {
+            $dir = dirname($path);
+            if (!is_dir($dir)) {
+                mkdir($dir, 0755, true);
+            }
         }
 
         $pdo = new PDO("sqlite:$path", null, null, [
