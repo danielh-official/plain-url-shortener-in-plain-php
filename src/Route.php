@@ -40,6 +40,11 @@ final class Route
             return;
         }
 
+        if ($method === 'POST' && preg_match('#^/([0-9A-Za-z]{4,16})/delete$#', $path, $m)) {
+            $this->delete($m[1]);
+            return;
+        }
+
         if ($method === 'GET' && preg_match('#^/([0-9A-Za-z]{4,16})/stats$#', $path, $m)) {
             $this->stats($m[1]);
             return;
@@ -121,5 +126,17 @@ final class Route
     {
         http_response_code(404);
         exit('Not found.');
+    }
+
+    private function delete(string $code): void
+    {
+        $this->requireCsrf();
+
+        if ($this->links->find($code) === null) {
+            $this->notFound();
+        }
+
+        $this->links->delete($code);
+        redirect('/');
     }
 }

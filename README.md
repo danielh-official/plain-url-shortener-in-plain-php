@@ -31,12 +31,13 @@ composer.json            PSR-4 (Src\ → src/) + helpers file autoload
 
 ## Routes
 
-| Method | Path             | What it does                          |
-|--------|------------------|---------------------------------------|
-| GET    | `/`              | Form and recent links                 |
-| POST   | `/shorten`       | Validates, stores, redirects to `/`   |
-| GET    | `/{code}`        | Counts a click, 302 to the target URL |
-| GET    | `/{code}/stats`  | JSON with clicks and created date     |
+| Method | Path               | What it does                          |
+|--------|--------------------|---------------------------------------|
+| GET    | `/`                | Form and recent links                 |
+| POST   | `/shorten`         | Validates, stores, redirects to `/`   |
+| POST   | `/{code}/delete`   | Deletes a link, redirects to `/`      |
+| GET    | `/{code}`          | Counts a click, 302 to the target URL |
+| GET    | `/{code}/stats`    | JSON with clicks and created date     |
 
 ## Next steps
 

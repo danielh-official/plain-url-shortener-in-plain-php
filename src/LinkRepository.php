@@ -43,4 +43,10 @@ final class LinkRepository
 
         return $stmt->fetchAll();
     }
+
+    public function delete(string $code): void
+    {
+        $stmt = $this->db->prepare('DELETE FROM links WHERE code = :code');
+        $stmt->execute(['code' => $code]);
+    }
 }
