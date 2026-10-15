@@ -1,0 +1,50 @@
+body {
+    font: 16px/1.5 system-ui, sans-serif;
+    max-width: 40rem;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+form {
+    display: flex;
+    gap: .5rem;
+}
+
+input[type=url] {
+    flex: 1;
+    padding: .5rem;
+}
+
+button {
+    padding: .5rem 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th,
+td {
+    text-align: left;
+    padding: .4rem .25rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.flex { display: flex; }
+.items-center { align-items: center; }
+.gap { gap: .5rem; }
+.flex-1 { flex: 1; }
+.m-0 { margin: 0; }
+.my { margin: 1rem 0; }
+.p { padding: .75rem 1rem; }
+.rounded { border-radius: .25rem; }
+.bg-ok { background: #e8f5e9; }
+.text-error { color: #b00020; }
+.truncate {
+    max-width: 18rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
